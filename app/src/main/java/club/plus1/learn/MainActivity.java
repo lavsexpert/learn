@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -15,9 +16,13 @@ public class MainActivity extends AppCompatActivity {
     private View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Intent intent = new Intent(MainActivity.this, SecondActivity.class);
-            intent.putExtra(SecondActivity.KEY, editText.getText().toString());
-            startActivity(intent);
+            String text = editText.getText().toString();
+            if(!text.isEmpty()){
+                Toast.makeText(v.getContext(), text, Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+                intent.putExtra(SecondActivity.KEY, text);
+                startActivity(intent);
+            }
         }
     };
 
